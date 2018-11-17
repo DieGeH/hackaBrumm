@@ -30,7 +30,7 @@ class Lightse:
                 self.StripKey = key
 
         # Logging
-        print(self.Lights)
+        #print(self.Lights)
         return
 
     def ConvertToHSV(self, R, G, B):
@@ -58,8 +58,11 @@ class Lightse:
     def setLightOn(self, Key, t=0):
         print("URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
 
-        d = {"on": True, "transitiontime": t}
-        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
+        #d = {"on": True, "transitiontime": t}
+        d = {"on": True}
+	r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
+
+	print (r.text)
 
         return
 
