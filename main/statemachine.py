@@ -41,7 +41,7 @@ class Statemachine:
         self.current_state = States.ambientLight
 
         # Logging
-        print("Initialization completed!")
+        # print("Initialization completed!")
 
     def control(self):
         signal = self.controller.evaluateSignal()
@@ -52,16 +52,16 @@ class Statemachine:
         self.current_state = States.ambientLight
 
         # Logging
-        print("control completed!")
+        # print("control completed!")
 
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
-        print(ambientValues)
+        # print(ambientValues)
         # self.lightHandler.setAmbientLight(ambientValues)
         self.current_state = States.control
 
         # Logging
-        print("ambientLight completed!")
+        # print("ambientLight completed!")
 
     def isTerminated(self):
         return self.current_state == States.terminated
