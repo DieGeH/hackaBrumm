@@ -46,6 +46,7 @@ class LightHandler:
 
 
     def toggleLightDelay(self, delay=1):
+        print(self.lightingKeys)
         for i in self.lightingKeys:
             self.lightController.toggleLight(i)
             time.sleep(delay)
