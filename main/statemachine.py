@@ -34,10 +34,15 @@ class Statemachine:
         self.lightHandler.initState()
         self.current_state = States.ambientLight
 
+        # Logging
+        print("Initialization completed!")
 
     def ambientLight(self):
         self.lightHandler.setAmbientLight()
+        self.current_state = States.terminated
 
+        # Logging
+        print("ambientLight completed!")
 
     def isTerminated(self):
         return self.current_state == States.terminated

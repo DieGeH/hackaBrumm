@@ -18,11 +18,12 @@ class Lightse:
 
     def getLights(self):
         # Logging
-        print(elf.URL+self.APIKEY+"lights/")
+        print(self.URL+self.APIKEY+"/lights/")
 
         self.Lights = []
-        r = requests.get(self.URL+self.APIKEY+"lights/")
-        parsed = json.loads(r.json())
+        r = requests.get(self.URL+self.APIKEY+"/lights/")
+        parsed = json.loads(r.text)
+        print(parsed)
         for key in parsed:
             self.Lights.append(key)
             if parsed[key]["modelid"] == "LIGHTIFY Indoor Flex RGBW":
@@ -55,13 +56,12 @@ class Lightse:
         return
 
     def setLightOn(self, Key, t=0):
-        print("self.URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
-        print("JSON: " + json.dumps(d))
+        print("URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
 
         d = {"on": True, "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
 
-
+        print("JSON: " + d)
         return
 
     def toggleLight(self, Key, t=0):

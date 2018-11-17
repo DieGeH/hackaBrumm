@@ -10,6 +10,7 @@ class LightHandler:
     def initState(self):
         # Low-level lights objekt
         self.lightController = lights.Lightse()
+        self.lightController.getLights()
 
         # Hoeher-Level Lampen Objekte
         self.lightingKeys = self.lightController.getLightKeys()
