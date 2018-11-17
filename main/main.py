@@ -1,4 +1,4 @@
-import statemachine
+import statemachine.Statemachine
 
 
 if __name__ == "__main__":

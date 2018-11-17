@@ -1,4 +1,4 @@
-import lights
+import lights.Lightse
 
 
 class LightHandler:
