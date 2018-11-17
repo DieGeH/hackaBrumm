@@ -11,12 +11,14 @@ import colorsys
 class Lightse:
 
     def __init__(self):
-        self.URL = "http://192.168.43.236"
+        return
+        self.URL = "http://192.168.43.124"
         self.APIKEY = "/api/99D2ADF803"
         self.Lights = []
         self.StripKey = -1
 
     def getLights(self):
+        return
         # Logging
         print(self.URL+self.APIKEY+"/lights/")
 
@@ -34,28 +36,33 @@ class Lightse:
 
 
     def convertToHSV(self, R, G, B):
+        return
         temp = colorsys.rgb_to_hsv(R, G, B)
         h = temp[0]*65535
         s = temp[1]*255
         return h, s
 
     def setLightColour(self, Key, R, G, B, t=0):
+        return
         temp = self.convertToHSV(R, G, B)
         d = {"hue": temp[0], "sat": temp[1], "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightBrightness(self, Key, br, t=0):
+        return
         d = {"bri": br, "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOff(self, Key, t=0):
+        return
         d = {"on": False, "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOn(self, Key, t=0):
+        return
         print("URL: " + self.URL+self.APIKEY+"/lights/"+Key+"/state")
 
         #d = {"on": True, "transitiontime": t}
@@ -74,13 +81,13 @@ class Lightse:
         else:
             self.setLightOff(Key, t)
 
-    def lightCountdown(self, Key, t):
-        d = {"hue": 0, "sat": 255}
-        requests.put(self.URL + self.APIKEY + "/lights/" + Key + "/state", json.dumps(d))
+
 
     def getStripKey(self):
+        return
         return self.StripKey
 
 
     def getLightKeys(self):
+        return
         return self.Lights

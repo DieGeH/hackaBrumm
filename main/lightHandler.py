@@ -29,11 +29,6 @@ class LightHandler:
             self.lightController.setLightColour(i, r, b, g)
             self.lightController.setLightBrightness(i, brightness)
 
-    def setStandUpLight(self):
-        self.lightController.setLightColour(self.stripKey, 230, 10, 12, 100)
-
-    def setDrinkingLight(self):
-        self.lightController.setLightColour(self.stripKey, 0, 0, 230, 100)
 
     # Schaltet alle Lampen aus
     def terminateAll(self):
@@ -41,8 +36,8 @@ class LightHandler:
             self.lightController.setLightOff(i)
 
         # LED Strip ausschalten
-        if (self.stripKey >= 0):
-            self.lightController.setLightOff(self.stripKey)
+        if (stripKey >= 0):
+            self.lightController.setLightOff(stripKey)
 
     def fadeLighting(self, r, g, b, ):
         pass

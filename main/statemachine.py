@@ -54,9 +54,6 @@ class Statemachine:
         #   *************************************************       signalStandUp
         elif self.current_state == States.signalStandUp:
             self.signalStandUp()
-        #   *************************************************       signalDrink
-        elif self.current_state == States.signalDrink:
-            self.signalDrink()
 
 
 
@@ -65,6 +62,7 @@ class Statemachine:
     def init(self):
         self.lightHandler.initState()
 
+        #self.current_state = States.ambientLight
         self.changeState(States.ambientLight)
 
         # Logging
@@ -86,20 +84,15 @@ class Statemachine:
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
         # print(ambientValues)
-        self.lightHandler.setAmbientLight(ambientValues)
+        # self.lightHandler.setAmbientLight(ambientValues)
+        # self.current_state = States.control
         self.changeState(States.control)
 
         # Logging
         # print("ambientLight completed!")
 
-    def signalStandUp(self):
-        self.lightHandler.setStandUpLight()
-        self.changeState(States.control)
-        # lightHandler
 
-    def signalDrink(self):
-        self.lightHandler.setDrinkingLight()
-        self.changeState(States.control)
+    def signalStandUp(self):
         pass
 
 
@@ -115,10 +108,6 @@ class Statemachine:
 
         print(remote.getIsOn())
 
-        if not remote.getIsOn():
-            self.current_state = States.terminated
-            return
-
 
         if fromState == -1:
             fromState = self.current_state
@@ -130,8 +119,6 @@ class Statemachine:
         self.enterStateFunctions[toState]()
 
         self.current_state = toState
-
-
 
     def onEnterInit(self):
         pass

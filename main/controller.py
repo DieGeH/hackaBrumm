@@ -6,25 +6,16 @@ from datetime import datetime
 class Controller:
     def __init__(self):
         self.starttime = datetime.now()
-        self.lastStandUp = datetime.now()
-        self.lastDrink = datetime.now()
         self.runtime = 0
         self.daytime = 0
 
     def evaluateSignal(self):
-        # print("eval signal")
         self.daytime = datetime.now()
-        diffInSecsStandup = int((self.daytime - self.lastStandUp).total_seconds())
-        # print(diffInSecs)
-        diffInSecsDrink = int((self.daytime - self.lastDrink).total_seconds())
-        if diffInSecsStandup == 10:
-            self.lastStandUp = datetime.now()
-            print("stand up")
+        diffInSecs = (self.daytime - self.starttime).total_seconds()
+        if 5 < diffInSecs < 10:
+            self.resetStartTime()
+            print("here")
             return 1
-        if diffInSecsDrink == 15:
-            self.lastDrink = datetime.now()
-            print("drink")
-            return 2
         return 0
 
     def calculateAmbientLight(self):
