@@ -19,8 +19,15 @@ class LightHandler:
         self.connected = True
 
 
-    def setAmbientLight(self):
-        # TEST: Licht an
+    def setAmbientLight(self, ambientValues):
+        rgb = ambientValues[0]
+        r = rgb[0]
+        g = rgb[1]
+        b = rgb[2]
+        brightness = ambientValues[1]
         for i in self.lightingKeys:
-            self.lightController.setLightOn(i)
+            self.lightController.setLightColour(i, r, b, g)
+            self.lightController.setLightBrightness(i, brightness)
+
+
 

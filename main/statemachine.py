@@ -1,6 +1,6 @@
-from enum import Enum
 import lightHandler
 import controller
+from enum import Enum
 
 # Grundgeruest und zentrale Klasse unserer Zustandsmaschine
 
@@ -44,18 +44,20 @@ class Statemachine:
 
     def control(self):
         signal = self.controller.evaluateSignal()
-        if(signal == 1):
+        if signal == 1:
             self.current_state = States.signalStandUp
         elif signal == 2:
             self.current_state = States.signalDrink
-        self.controller.calculateAmbientLight()
+        self.current_state = States.ambientLight
 
         # Logging
         print("control completed!")
 
     def ambientLight(self):
-        self.lightHandler.setAmbientLight()
-        self.current_state = States.terminated
+        ambientValues = self.controller.calculateAmbientLight()
+        print(ambientValues)
+        # self.lightHandler.setAmbientLight(ambientValues)
+        self.current_state = States.control
 
         # Logging
         print("ambientLight completed!")
