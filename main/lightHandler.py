@@ -35,5 +35,14 @@ class LightHandler:
     def setDrinkingLight(self):
         self.lightController.setLightColour(self.stripKey, 0, 0, 230, 100)
 
+    # Schaltet alle Lampen aus
+    def terminateAll(self):
+        for i in self.lightingKeys:
+            self.lightController.setLightOff(i)
+
+        # LED Strip ausschalten
+        if (self.stripKey >= 0):
+            self.lightController.setLightOff(self.stripKey)
+
     def fadeLighting(self, r, g, b, ):
         pass

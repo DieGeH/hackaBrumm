@@ -73,13 +73,15 @@ class Statemachine:
     def control(self):
         signal = self.controller.evaluateSignal()
         if signal == 1:
-            self.current_state = States.signalStandUp
+            # self.current_state = States.signalStandUp
+            self.changeState(States.signalStandUp)
         elif signal == 2:
-            self.current_state = States.signalDrink
-        self.current_state = States.ambientLight
+            # self.current_state = States.signalDrink
+            self.changeState(States.signalDrink)
+        else:
+            #self.current_state = States.ambientLight
+            self.changeState(States.ambientLight)
 
-        # Logging
-        # print("control completed!")
 
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
@@ -98,15 +100,25 @@ class Statemachine:
     def signalDrink(self):
         self.lightHandler.setDrinkingLight()
         self.changeState(States.control)
+        pass
+
+
+    def terminated(self):
+        # Lampen aus, scheisse an
+        self.lightHandler.terminateAll()
+
 
     def isTerminated(self):
-        if self.current_state == States.terminated:
-            return True
-        return False
+        return self.current_state == States.terminated
 
     def changeState(self, toState, fromState=-1):
-        if remote.getIsOn():
-            self.state = States.control
+
+        print(remote.getIsOn())
+
+        if not remote.getIsOn():
+            self.current_state = States.terminated
+            return
+
 
         if fromState == -1:
             fromState = self.current_state
@@ -138,7 +150,7 @@ class Statemachine:
 
 
     def onEnterAmbientLight(self):
-        pass
+        print("AmbientLight entered")
 
     def onExitAmbientLight(self):
         pass
