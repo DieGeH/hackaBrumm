@@ -15,7 +15,7 @@ class LightHandler:
         # Hoeher-Level Lampen Objekte
         self.lightingKeys = self.lightController.getLightKeys()
         self.stripKey = self.lightController.getStripKey()
-
+        
         self.startAll()
 
         self.connected = True
@@ -29,7 +29,7 @@ class LightHandler:
         b = rgb[2]
         brightness = ambientValues[1]
         for i in self.lightingKeys:
-            if not i == self.sripKey:
+            if not i == self.stripKey:
                 self.lightController.setLightColour(i, r, b, g)
                 self.lightController.setLightBrightness(i, brightness)
 
@@ -51,7 +51,7 @@ class LightHandler:
 
     def startAll(self):
         for i in self.lightingKeys:
-            self.lightingKeys.setLightOn(i, 20)
+            self.lightController.setLightOn(i, 20)
 
     # Schaltet alle Lampen aus
     def terminateAll(self):
