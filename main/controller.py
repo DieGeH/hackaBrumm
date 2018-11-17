@@ -2,6 +2,8 @@ import time
 from datetime import datetime
 #   The purpose of the following code is to calculate the ideal value for our ambient light and to figure out if
 #   a signal needs to be sent
+import sched, time
+
 
 class Controller:
     def __init__(self):

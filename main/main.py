@@ -1,4 +1,4 @@
-import statemachine
+from main import statemachine
 
 
 if __name__ == "__main__":
