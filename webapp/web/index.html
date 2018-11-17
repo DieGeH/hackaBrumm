@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lights</title>
+        <title>WRKMD</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="led.ico" type="image/x-icon">
         <link type="text/css" rel="stylesheet" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -34,8 +35,12 @@
                 }
                 let isOnVal = 'false';
                 let isPausedVal = 'false';
-                if (isOn)
+                if (isOn) {
                     isOnVal = 'true';
+                    $('#pause').removeClass('disabled');
+                } else {
+                    $('#pause').addClass('disabled');
+                }
                 if (isPaused)
                     isPausedVal = 'true';
                 $.ajax({
@@ -55,7 +60,7 @@
     <body>
         <div id="buttons">
             <input id ="power" type="submit" value="Turn On/Off" class="shadow mabo" onClick="toggle(this, 'power')"><br>
-            <input id = "pause" type="submit" value="Pause" class="shadow mabo" onClick="toggle(this, 'pause')"><br>
+            <input id = "pause" type="submit" value="Pause" class="shadow mabo disabled" onClick="toggle(this, 'pause')"><br>
         </div>
     </body>
 </html>

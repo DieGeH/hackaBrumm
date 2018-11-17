@@ -36,3 +36,8 @@ input[type=submit].on {
     background-color: rgb(83, 158, 255);
     color: #fff;
 }
+
+input[type=submit].disabled {
+    opacity: .5;
+    cursor: default;
+}
