@@ -31,48 +31,49 @@ class Lightse:
 
         # Logging
         #print(self.Lights)
-        return
 
-    def ConvertToHSV(self, R, G, B):
+
+    def convertToHSV(self, R, G, B):
         temp = colorsys.rgb_to_hsv(R, G, B)
         h = temp[0]*65535
         s = temp[1]*255
-        return s, h
+        return h, s
 
     def setLightColour(self, Key, R, G, B, t=0):
-        temp = self.ConvertToHSV(R, G, B)
+        temp = self.convertToHSV(R, G, B)
         d = {"hue": temp[0], "sat": temp[1], "transitiontime": t}
-        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightBrightness(self, Key, br, t=0):
         d = {"bri": br, "transitiontime": t}
-        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOff(self, Key, t=0):
         d = {"on": False, "transitiontime": t}
-        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOn(self, Key, t=0):
-        print("URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
+        print("URL: " + self.URL+self.APIKEY+"/lights/"+Key+"/state")
 
         #d = {"on": True, "transitiontime": t}
         d = {"on": True}
-	r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
+        r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
 
-	print (r.text)
+        print (r.text)
 
         return
 
-    def toggleLight(self, Key, t=0):
+    '''def toggleLight(self, Key, t=0):
         r = requests.get(self.URL+self.APIKEY+"/lights/"+Key)
-        d = json.loads(r.json())
+        d = json.loads(r.text)
         if not d['state']['on']:
             self.setLightOn(Key, t)
         else:
             self.setLightOff(Key, t)
+	'''
 
 
     def getStripKey(self):
