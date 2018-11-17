@@ -61,7 +61,6 @@ class Lightse:
         d = {"on": True, "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
 
-        print("JSON: " + d)
         return
 
     def toggleLight(self, Key, t=0):
