@@ -37,7 +37,7 @@ class Lightse:
         temp = colorsys.rgb_to_hsv(R, G, B)
         h = temp[0]*65535
         s = temp[1]*255
-        return s, h
+        return h, s
 
     def setLightColour(self, Key, R, G, B, t=0):
         temp = self.convertToHSV(R, G, B)
@@ -60,9 +60,9 @@ class Lightse:
 
         #d = {"on": True, "transitiontime": t}
         d = {"on": True}
-	r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
+        r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
 
-	print (r.text)
+        print (r.text)
 
         return
 
