@@ -20,6 +20,9 @@ class Lightse:
             Lights.append(key)
             if parsed[key]["modelid"] == "LIGHTIFY Indoor Flex RGBW":
                 StripKey = key
+
+        # Logging
+        print(Lights)
         return
 
     def ConvertToHSV(self, R, G, B):
@@ -47,6 +50,10 @@ class Lightse:
     def setLightOn(self, Key, t=0):
         d = {"on": True, "transitiontime": t}
         requests.put(URL+APIKEY+"/"+Key+"/state", json.dumps(d))
+
+        print("URL: " + URL+APIKEY+"/"+Key+"/state")
+        print("JSON: " + json.dumps(d))
+
         return
 
     def toggleLight(self, Key, t=0):
