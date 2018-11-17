@@ -31,6 +31,8 @@ class LightHandler:
 
 
 
+    def setDrinkingLight(self):
+        self.lightController.setLightColour("7", 0, 0, 230, 1800)
 
     def fadeLighting(self, r, g, b, ):
         pass

@@ -23,9 +23,12 @@ class Controller:
         diffInSecs = int(d2_ts - d1_ts)
         '''
         diffInSecs = (self.daytime - self.starttime).total_seconds()
+        diffInMins = (self.daytime - self.starttime).total_seconds()/60
         print(diffInSecs)
         if diffInSecs%(2*60) <= 10:
             return 1
+        if diffInMins % 120 == 0:
+            return 2
         return 0
 
     def calculateAmbientLight(self):

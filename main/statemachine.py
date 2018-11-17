@@ -140,7 +140,7 @@ class Statemachine:
 
 
     def onEnterSignalDrink(self):
-        pass
+        lightHandler.setDrinkingLight()
 
     def onExitSignalDrink(self):
         pass
