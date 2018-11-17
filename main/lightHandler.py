@@ -29,10 +29,11 @@ class LightHandler:
             self.lightController.setLightColour(i, r, b, g)
             self.lightController.setLightBrightness(i, brightness)
 
-
+    def setStandUpLight(self):
+        self.lightController.setLightColour(self.stripKey, 230, 10, 12, 100)
 
     def setDrinkingLight(self):
-        self.lightController.setLightColour("7", 0, 0, 230, 1800)
+        self.lightController.setLightColour(self.stripKey, 0, 0, 230, 100)
 
     def fadeLighting(self, r, g, b, ):
         pass

@@ -54,6 +54,9 @@ class Statemachine:
         #   *************************************************       signalStandUp
         elif self.current_state == States.signalStandUp:
             self.signalStandUp()
+        #   *************************************************       signalDrink
+        elif self.current_state == States.signalDrink:
+            self.signalDrink()
 
 
 
@@ -62,7 +65,6 @@ class Statemachine:
     def init(self):
         self.lightHandler.initState()
 
-        #self.current_state = States.ambientLight
         self.changeState(States.ambientLight)
 
         # Logging
@@ -82,21 +84,27 @@ class Statemachine:
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
         # print(ambientValues)
-        # self.lightHandler.setAmbientLight(ambientValues)
-        self.current_state = States.control
+        self.lightHandler.setAmbientLight(ambientValues)
+        self.changeState(States.control)
 
         # Logging
         # print("ambientLight completed!")
 
-
     def signalStandUp(self):
-        lightHandler
+        self.lightHandler.setStandUpLight()
+        self.changeState(States.control)
+        # lightHandler
+
+    def signalDrink(self):
+        self.lightHandler.setDrinkingLight()
+        self.changeState(States.control)
 
     def isTerminated(self):
-        return self.current_state == States.terminated
+        if self.current_state == States.terminated:
+            return True
+        return False
 
     def changeState(self, toState, fromState=-1):
-
         if remote.getIsOn():
             self.state = States.control
 
@@ -108,6 +116,8 @@ class Statemachine:
 
         # Entsprechende onEnter Funktion wird aufgerufen
         self.enterStateFunctions[toState]()
+
+        self.current_state = toState
 
 
 
@@ -128,7 +138,7 @@ class Statemachine:
 
 
     def onEnterAmbientLight(self):
-        print("AmbientLight entered")
+        pass
 
     def onExitAmbientLight(self):
         pass
@@ -144,7 +154,7 @@ class Statemachine:
 
 
     def onEnterSignalDrink(self):
-        lightHandler.setDrinkingLight()
+        pass
 
     def onExitSignalDrink(self):
         pass

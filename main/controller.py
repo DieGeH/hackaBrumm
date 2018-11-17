@@ -6,17 +6,24 @@ from datetime import datetime
 class Controller:
     def __init__(self):
         self.starttime = datetime.now()
+        self.lastStandUp = datetime.now()
+        self.lastDrink = datetime.now()
         self.runtime = 0
         self.daytime = 0
 
     def evaluateSignal(self):
+        # print("eval signal")
         self.daytime = datetime.now()
-        diffInSecs = (self.daytime - self.starttime).total_seconds()
-        if 5 < diffInSecs < 10:
-            self.resetStartTime()
-            print("here")
+        diffInSecsStandup = int((self.daytime - self.lastStandUp).total_seconds())
+        # print(diffInSecs)
+        diffInSecsDrink = int((self.daytime - self.lastDrink).total_seconds())
+        if diffInSecsStandup == 10:
+            self.lastStandUp = datetime.now()
+            print("stand up")
             return 1
-        if diffInMins % 120 == 0:
+        if diffInSecsDrink == 15:
+            self.lastDrink = datetime.now()
+            print("drink")
             return 2
         return 0
 

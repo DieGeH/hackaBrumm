@@ -1,4 +1,4 @@
-from main import lights
+import lights
 
 l = lights.Lightse()
 
