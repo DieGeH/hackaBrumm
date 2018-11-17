@@ -32,8 +32,8 @@ class Statemachine:
         }
 
         self.exitStateFunctions = {
-            States.init:            self.onExitInit(),
-            States.control:         self.onExitControl(),
+            States.init:            self.onExitInit,
+            States.control:         self.onExitControl,
             States.ambientLight:    self.onExitAmbientLight,
             States.signalStandUp:   self.onExitSignalStandUp,
             States.signalDrink:     self.onExitSignalDrink,
