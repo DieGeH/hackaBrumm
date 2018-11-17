@@ -1,4 +1,4 @@
-import lights.Lightse
+import lights
 
 
 class LightHandler:
@@ -9,7 +9,7 @@ class LightHandler:
 
     def initState(self):
         # Low-level lights objekt
-        self.lightController = Lightse()
+        self.lightController = lights.Lightse()
 
         # Hoeher-Level Lampen Objekte
         self.lightingKeys = self.lightController.Lights

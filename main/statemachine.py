@@ -1,5 +1,5 @@
 from enum import Enum
-import lightHandler.LightHandler
+import lightHandler
 
 # Grundgeruest und zentrale Klasse unserer Zustandsmaschine
 
@@ -15,7 +15,7 @@ class States(Enum):
 class Statemachine:
     def __init__(self):
         self.current_state = States.init
-        self.lightHandler = LightHandler()
+        self.lightHandler = lightHandler.LightHandler()
 
     def update(self):
         #   *************************************************       Initialisieren

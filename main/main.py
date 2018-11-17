@@ -1,8 +1,8 @@
-import statemachine.Statemachine
+import statemachine
 
 
 if __name__ == "__main__":
-    s = Statemachine()
+    s = statemachine.Statemachine()
 
     while not s.isTerminated():
         pass
