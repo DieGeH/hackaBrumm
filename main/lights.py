@@ -2,27 +2,31 @@ import json
 import requests
 import colorsys
 
-URL = "http://131.159.211.235"
-APIKEY = "/api/99D2ADF803"
-Lights = []
-StripKey = -1
+
 #Modelid Strip: LIGHTIFY Indoor Flex RGBW
 #Modelid Lampe: CLA60 RGBW OSRAM
 
 
 
 class Lightse:
+
+    def __init__(self):
+        self.URL = "http://131.159.211.235"
+        self.APIKEY = "/api/99D2ADF803"
+        self.Lights = []
+        self.StripKey = -1
+
     def getLights(self):
-        Lights = []
-        r = requests.get(URL+APIKEY+"lights/")
+        self.Lights = []
+        r = requests.get(self.URL+self.APIKEY+"lights/")
         parsed = json.loads(r.json())
         for key in parsed:
-            Lights.append(key)
+            self.Lights.append(key)
             if parsed[key]["modelid"] == "LIGHTIFY Indoor Flex RGBW":
-                StripKey = key
+                self.StripKey = key
 
         # Logging
-        print(Lights)
+        print(self.Lights)
         return
 
     def ConvertToHSV(self, R, G, B):
@@ -34,30 +38,30 @@ class Lightse:
     def setLightColour(self, Key, R, G, B, t=0):
         temp = self.ConvertToHSV(R, G, B)
         d = {"hue": temp[0], "sat": temp[1], "transitiontime": t}
-        requests.put(URL+APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
         return
 
     def setLightBrightness(self, Key, br, t=0):
         d = {"bri": br, "transitiontime": t}
-        requests.put(URL+APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOff(self, Key, t=0):
         d = {"on": False, "transitiontime": t}
-        requests.put(URL+APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
         return
 
     def setLightOn(self, Key, t=0):
         d = {"on": True, "transitiontime": t}
-        requests.put(URL+APIKEY+"/"+Key+"/state", json.dumps(d))
+        requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
 
-        print("URL: " + URL+APIKEY+"/"+Key+"/state")
+        print("self.URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
         print("JSON: " + json.dumps(d))
 
         return
 
     def toggleLight(self, Key, t=0):
-        r = requests.get(URL+APIKEY+"/lights/"+Key)
+        r = requests.get(self.URL+self.APIKEY+"/lights/"+Key)
         d = json.loads(r.json())
         if not d['state']['on']:
             self.setLightOn(Key, t)
