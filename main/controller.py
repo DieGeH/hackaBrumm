@@ -29,7 +29,7 @@ class Controller:
         return 0
 
     def calculateAmbientLight(self):
-        # weiß mit höchster Intensität
+        # weiss mit hoechster Intensitaet
         red = 255
         green = 255
         blue = 255

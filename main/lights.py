@@ -73,14 +73,14 @@ class Lightse:
 
         return
 
-    '''def toggleLight(self, Key, t=0):
+    def toggleLight(self, Key, t=0):
         r = requests.get(self.URL+self.APIKEY+"/lights/"+Key)
         d = json.loads(r.text)
         if not d['state']['on']:
             self.setLightOn(Key, t)
         else:
             self.setLightOff(Key, t)
-	'''
+
 
 
     def getStripKey(self):
