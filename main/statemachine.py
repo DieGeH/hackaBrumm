@@ -69,22 +69,20 @@ class Statemachine:
 
     def control(self):
         signal = self.controller.evaluateSignal()
-
-        self.controller.calculateAmbientLight()
-
-        if(signal == 1):
-            #self.current_state = States.signalStandUp
-            self.changeState(States.signalStandUp)
+        if signal == 1:
+            self.current_state = States.signalStandUp
         elif signal == 2:
-            #self.current_state = States.signalDrink
-            self.changeState(States.signalDrink)
+            self.current_state = States.signalDrink
+        self.current_state = States.ambientLight
 
         # Logging
         print("control completed!")
 
     def ambientLight(self):
-        self.lightHandler.setAmbientLight()
-        self.current_state = States.terminated
+        ambientValues = self.controller.calculateAmbientLight()
+        print(ambientValues)
+        # self.lightHandler.setAmbientLight(ambientValues)
+        self.current_state = States.control
 
         # Logging
         print("ambientLight completed!")
@@ -154,3 +152,4 @@ class Statemachine:
 
     def onExitTerminated(self):
         pass
+
