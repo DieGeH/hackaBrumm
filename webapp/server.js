@@ -9,12 +9,27 @@ const
 
 const htmlPath = path.join(__dirname, 'web');
 
+fs.writeFile('data.json', '00', (err) => {  
+    if (err)
+        throw err;
+});
+
 app.use(express.static(htmlPath));
 app.use(bodyParser.urlencoded({extended : true}));
 app.post("/data", function(request, response) {
     let data = request.body;
     console.log(data);
-    fs.writeFile('data.json', JSON.stringify(data), (err) => {  
+    let binData = "";
+    if (data.isOn == "true")
+        binData += 1
+    else
+        binData += 0
+    if (data.isPaused == "true")
+        binData += 1;
+    else
+        binData += 0;
+    console.log(binData)
+    fs.writeFile('data.json', binData, (err) => {  
         if (err)
             throw err;
     });

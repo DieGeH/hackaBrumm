@@ -12,7 +12,6 @@ class Controller:
         self.daytime = 0
 
     def evaluateSignal(self):
-        # print("eval signal")
         self.daytime = datetime.now()
         diffInSecsStandup = int((self.daytime - self.lastStandUp).total_seconds())
         # print(diffInSecs)

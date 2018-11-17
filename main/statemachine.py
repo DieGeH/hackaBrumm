@@ -117,10 +117,6 @@ class Statemachine:
 
         print(remote.getIsOn())
 
-        if not remote.getIsOn():
-            self.current_state = States.terminated
-            return
-
 
         if fromState == -1:
             fromState = self.current_state

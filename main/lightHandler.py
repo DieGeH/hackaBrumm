@@ -1,4 +1,5 @@
 import lights
+import time
 
 class LightHandler:
 
@@ -18,6 +19,7 @@ class LightHandler:
         self.startAll()
 
         self.connected = True
+        print("LightHandler:\n\tInit done")
 
 
     def setAmbientLight(self, ambientValues):
@@ -62,3 +64,11 @@ class LightHandler:
 
     def fadeLighting(self, r, g, b, ):
         pass
+
+
+    def toggleLightDelay(self, delay=1):
+        print(self.lightingKeys)
+        for i in self.lightingKeys:
+            self.lightController.toggleLight(i)
+            time.sleep(delay)
+
