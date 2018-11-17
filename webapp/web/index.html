@@ -35,16 +35,16 @@
                 if (!isPaused) {
                     $('#pause').removeClass('on');
                 }
-                let isOnVal = 'false';
-                let isPausedVal = 'false';
+                let isOnVal = false;
+                let isPausedVal = false;
                 if (isOn) {
-                    isOnVal = 'true';
+                    isOnVal = true;
                     $('#pause').removeClass('disabled');
                 } else {
                     $('#pause').addClass('disabled');
                 }
                 if (isPaused)
-                    isPausedVal = 'true';
+                    isPausedVal = true;
                 $.ajax({
                     type: "POST",
                     url: 'http://127.0.0.1:3000/data',
