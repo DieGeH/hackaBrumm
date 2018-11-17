@@ -31,3 +31,6 @@ class LightHandler:
 
 
 
+
+    def fadeLighting(self, r, g, b, ):
+        pass
