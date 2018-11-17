@@ -62,8 +62,6 @@ class Lightse:
         d = {"on": True}
         r = requests.put(self.URL+self.APIKEY+"/lights/"+Key+"/state", json.dumps(d))
 
-        print (r.text)
-
         return
 
     def toggleLight(self, Key, t=0):

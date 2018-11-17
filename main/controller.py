@@ -21,10 +21,14 @@ class Controller:
             self.lastStandUp = datetime.now()
             print("stand up")
             return 1
+        if diffInSecsStandup == 5:
+            return -1
         if diffInSecsDrink == 15:
             self.lastDrink = datetime.now()
             print("drink")
             return 2
+        if diffInSecsStandup == 5:
+            return -2
         return 0
 
     def calculateAmbientLight(self):

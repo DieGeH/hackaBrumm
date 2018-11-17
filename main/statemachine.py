@@ -78,6 +78,9 @@ class Statemachine:
         elif signal == 2:
             # self.current_state = States.signalDrink
             self.changeState(States.signalDrink)
+        elif signal < 0:
+            ambientValues = self.controller.calculateAmbientLight()
+            self.lightHandler.setStripOnAmbient(ambientValues)
         else:
             #self.current_state = States.ambientLight
             self.changeState(States.ambientLight)
@@ -100,7 +103,6 @@ class Statemachine:
     def signalDrink(self):
         self.lightHandler.setDrinkingLight()
         self.changeState(States.control)
-        pass
 
 
     def terminated(self):
