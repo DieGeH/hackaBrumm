@@ -24,3 +24,6 @@ class LightHandler:
         for i in self.lightingKeys:
             self.lightController.setLightOn(i)
 
+
+    def fadeLighting(self, r, g, b, ):
+        pass
