@@ -81,19 +81,17 @@ class Statemachine:
         elif signal < 0:
             ambientValues = self.controller.calculateAmbientLight()
             self.lightHandler.setStripOnAmbient(ambientValues)
+            self.changeState(States.ambientLight)
         else:
-            #self.current_state = States.ambientLight
             self.changeState(States.ambientLight)
 
 
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
-        # print(ambientValues)
+
         self.lightHandler.setAmbientLight(ambientValues)
         self.changeState(States.control)
 
-        # Logging
-        # print("ambientLight completed!")
 
     def signalStandUp(self):
         self.lightHandler.setStandUpLight()
