@@ -14,6 +14,7 @@ class States(Enum):
     terminated = 5
 
 
+
 class Statemachine:
     def __init__(self):
         self.current_state = States.init
