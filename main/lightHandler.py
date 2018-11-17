@@ -12,7 +12,7 @@ class LightHandler:
         self.lightController = lights.Lightse()
 
         # Hoeher-Level Lampen Objekte
-        self.lightingKeys = self.lightController.Lights
+        self.lightingKeys = self.lightController.getLightKeys()
         self.stripKey = self.lightController.getStripKey()
 
         self.connected = True

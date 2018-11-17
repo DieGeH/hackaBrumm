@@ -68,3 +68,10 @@ class Lightse:
         else:
             self.setLightOff(Key, t)
 
+
+    def getStripKey(self):
+        return self.StripKey
+
+
+    def getLightKeys(self):
+        return self.Lights
