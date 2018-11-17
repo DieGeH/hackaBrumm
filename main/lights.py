@@ -11,7 +11,7 @@ import colorsys
 class Lightse:
 
     def __init__(self):
-        self.URL = "http://131.159.211.235"
+        self.URL = "http://192.168.43.124"
         self.APIKEY = "/api/99D2ADF803"
         self.Lights = []
         self.StripKey = -1
