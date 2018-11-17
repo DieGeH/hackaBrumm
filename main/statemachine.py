@@ -33,8 +33,8 @@ class Statemachine:
         }
 
         self.exitStateFunctions = {
-            States.init:            self.onExitInit(),
-            States.control:         self.onExitControl(),
+            States.init:            self.onExitInit,
+            States.control:         self.onExitControl,
             States.ambientLight:    self.onExitAmbientLight,
             States.signalStandUp:   self.onExitSignalStandUp,
             States.signalDrink:     self.onExitSignalDrink,
@@ -66,7 +66,7 @@ class Statemachine:
         self.changeState(States.ambientLight)
 
         # Logging
-        print("Initialization completed!")
+        # print("Initialization completed!")
 
     def control(self):
         signal = self.controller.evaluateSignal()
@@ -77,16 +77,16 @@ class Statemachine:
         self.current_state = States.ambientLight
 
         # Logging
-        print("control completed!")
+        # print("control completed!")
 
     def ambientLight(self):
         ambientValues = self.controller.calculateAmbientLight()
-        print(ambientValues)
+        # print(ambientValues)
         # self.lightHandler.setAmbientLight(ambientValues)
         self.current_state = States.control
 
         # Logging
-        print("ambientLight completed!")
+        # print("ambientLight completed!")
 
 
     def signalStandUp(self):
