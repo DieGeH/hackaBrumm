@@ -1,6 +1,6 @@
 import json
 
-isOn = False
+isOn = True
 isPaused = False
 
 def readData():
