@@ -17,6 +17,9 @@ class Lightse:
         self.StripKey = -1
 
     def getLights(self):
+        # Logging
+        print(elf.URL+self.APIKEY+"lights/")
+
         self.Lights = []
         r = requests.get(self.URL+self.APIKEY+"lights/")
         parsed = json.loads(r.json())
@@ -52,11 +55,12 @@ class Lightse:
         return
 
     def setLightOn(self, Key, t=0):
+        print("self.URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
+        print("JSON: " + json.dumps(d))
+
         d = {"on": True, "transitiontime": t}
         requests.put(self.URL+self.APIKEY+"/"+Key+"/state", json.dumps(d))
 
-        print("self.URL: " + self.URL+self.APIKEY+"/"+Key+"/state")
-        print("JSON: " + json.dumps(d))
 
         return
 
