@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lights</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+        <script>
+
+            $(function () {
+                let heightButtons = $('#buttons').height();
+                let height = $(window).height();
+                let marginTop = parseInt(height/2) - parseInt(heightButtons/2) - 20;
+                $('#buttons').css('margin-top', marginTop);
+            });
+
+            let isOn, isPaused = false;
+            function toggle (ele, name) {
+                if (name === 'power') {
+                    $(ele).toggleClass('on');
+                    isOn = !isOn;
+                    if (!isOn) {
+                        isPaused = false;
+                    }
+                }
+                if (name === 'pause' && isOn) {
+                    $(ele).toggleClass('on');
+                    isPaused = !isPaused;
+                }
+                if (!isPaused) {
+                    $('#pause').removeClass('on');
+                }
+                let isOnVal = 'false';
+                let isPausedVal = 'false';
+                if (isOn)
+                    isOnVal = 'true';
+                if (isPaused)
+                    isPausedVal = 'true';
+                $.ajax({
+                    type: "POST",
+                    url: 'http://127.0.0.1:3000/data',
+                    data: 'isOn=' + isOnVal + '&isPaused=' + isPausedVal,
+                    dataType: 'html',
+                    success: function(data){      
+                        console.log('ok');
+                    }
+                }).fail(function() {
+                    console.log('ok');
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div id="buttons">
+            <input id ="power" type="submit" value="Turn On/Off" class="shadow mabo" onClick="toggle(this, 'power')"><br>
+            <input id = "pause" type="submit" value="Pause" class="shadow mabo" onClick="toggle(this, 'pause')"><br>
+        </div>
+    </body>
+</html>

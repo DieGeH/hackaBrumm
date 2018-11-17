@@ -1,0 +1,38 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14pt;
+    background-color: #fefefe;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+#buttons {
+    max-width: 350px;
+    width: calc(100% - 40);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=submit] {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    padding: 25px;
+    width: 100%;
+    transition: all .1s;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.mabo {
+    margin-bottom: 10px;
+}
+
+input[type=submit].on {
+    background-color: rgb(83, 158, 255);
+    color: #fff;
+}
