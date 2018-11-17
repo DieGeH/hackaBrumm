@@ -18,6 +18,7 @@ class LightHandler:
         self.stripKey = self.lightController.getStripKey()
 
         self.connected = True
+        print("LightHandler:\n\tInit done")
 
 
     def setAmbientLight(self, ambientValues):
