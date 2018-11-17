@@ -4,7 +4,7 @@ isOn = False
 isPaused = False
 
 def readData():
-    with open('data.json') as f:
+    with open('../webapp/data.json') as f:
         data = json.load(f)
         if (data["isOn"] == 'false'):
             isOn = False
