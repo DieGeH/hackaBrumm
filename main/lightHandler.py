@@ -30,7 +30,14 @@ class LightHandler:
             self.lightController.setLightBrightness(i, brightness)
 
 
+    # Schaltet alle Lampen aus
+    def terminateAll(self):
+        for i in self.lightingKeys:
+            self.lightController.setLightOff(i)
 
+        # LED Strip ausschalten
+        if (stripKey >= 0):
+            self.lightController.setLightOff(stripKey)
 
     def fadeLighting(self, r, g, b, ):
         pass

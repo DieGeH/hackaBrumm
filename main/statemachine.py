@@ -85,7 +85,8 @@ class Statemachine:
         ambientValues = self.controller.calculateAmbientLight()
         # print(ambientValues)
         # self.lightHandler.setAmbientLight(ambientValues)
-        self.current_state = States.control
+        # self.current_state = States.control
+        self.changeState(States.control)
 
         # Logging
         # print("ambientLight completed!")
@@ -97,7 +98,7 @@ class Statemachine:
 
     def terminated(self):
         # Lampen aus, scheisse an
-        pass
+        self.lightHandler.terminateAll()
 
 
     def isTerminated(self):
