@@ -1,6 +1,7 @@
 from enum import Enum
 import lightHandler
 import controller
+import remote
 
 # Grundgeruest und zentrale Klasse unserer Zustandsmaschine
 
@@ -95,6 +96,9 @@ class Statemachine:
         return self.current_state == States.terminated
 
     def changeState(self, toState, fromState=-1):
+
+        if remote.getIsOn():
+            self.state = States.control
 
         if fromState == -1:
             fromState = self.current_state
