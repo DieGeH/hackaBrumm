@@ -45,16 +45,15 @@
                 }
                 if (isPaused)
                     isPausedVal = true;
+                console.log("test");
                 $.ajax({
                     type: "POST",
                     url: 'http://127.0.0.1:3000/data',
                     data: 'isOn=' + isOnVal + '&isPaused=' + isPausedVal,
                     dataType: 'html',
                     success: function(data){      
-                        console.log('ok');
                     }
                 }).fail(function() {
-                    console.log('ok');
                 });
             }
         </script>
