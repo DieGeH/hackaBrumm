@@ -108,6 +108,7 @@ class Statemachine:
 
         if not remote.getIsOn():
             self.current_state = States.terminated
+            return
 
 
         if fromState == -1:
@@ -119,7 +120,7 @@ class Statemachine:
         # Entsprechende onEnter Funktion wird aufgerufen
         self.enterStateFunctions[toState]()
 
-
+        self.current_state = toState
 
     def onEnterInit(self):
         pass
