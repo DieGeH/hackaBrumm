@@ -24,7 +24,7 @@ class Statemachine:
 
         #   *************************************************       AmbientLight
         elif self.current_state == States.ambientLight:
-            selfambientLight()
+            self.ambientLight()
 
 
 
