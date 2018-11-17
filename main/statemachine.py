@@ -106,6 +106,8 @@ class Statemachine:
 
     def changeState(self, toState, fromState=-1):
 
+        print(remote.getIsOn())
+
         if not remote.getIsOn():
             self.current_state = States.terminated
             return

@@ -5,14 +5,14 @@ isPaused = False
 
 def readData():
     with open('../webapp/data.json') as f:
-        data = json.load(f)
+        data = json.load(f.read())
         if (data["isOn"] == 'false'):
             isOn = False
         elif (data["isOn"] == 'true'):
             isOn = True
         if (data["isPaused"] == 'false'):
             isPaused = False
-        elif (data["isPaused"] == 'false'):
+        elif (data["isPaused"] == 'true'):
             isPaused = True
 
 def getIsOn ():
