@@ -86,8 +86,8 @@ class Statemachine:
         # print(ambientValues)
         # self.lightHandler.setAmbientLight(ambientValues)
         # self.current_state = States.control
-        self.changeState(States.control)
-
+        #self.changeState(States.control)
+        self.lightHandler.toggleLightDelay()
         # Logging
         # print("ambientLight completed!")
 

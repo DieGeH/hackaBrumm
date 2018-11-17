@@ -1,4 +1,5 @@
 import lights
+import time
 
 
 class LightHandler:
@@ -41,3 +42,10 @@ class LightHandler:
 
     def fadeLighting(self, r, g, b, ):
         pass
+
+
+    def toggleLightDelay(self, delay=1):
+        for i in self.lightingKeys:
+            self.lightController.toggleLight(i)
+            time.sleep(delay)
+
