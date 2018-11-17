@@ -74,7 +74,9 @@ class Lightse:
         else:
             self.setLightOff(Key, t)
 
-
+    def lightCountdown(self, Key, t):
+        d = {"hue": 0, "sat": 255}
+        requests.put(self.URL + self.APIKEY + "/lights/" + Key + "/state", json.dumps(d))
 
     def getStripKey(self):
         return self.StripKey
