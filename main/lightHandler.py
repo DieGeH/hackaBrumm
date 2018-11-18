@@ -34,11 +34,12 @@ class LightHandler:
                 self.lightController.setLightBrightness(i, brightness)
 
     def setStandUpLight(self):
-        self.lightController.setLightColour(self.stripKey, 255, 102, 12, 100)
+        self.lightController.setLightColour(self.stripKey, 255, 50, 12, 100)
 
 
     def setDrinkingLight(self):
         self.lightController.setLightColour(self.stripKey, 102, 153, 204, 50)
+        self.lightController.setLightBrightness(self.stripKey,200)
 
     def setStripOnAmbient(self, ambientValues):
         rgb = ambientValues[0]
