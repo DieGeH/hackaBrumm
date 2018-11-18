@@ -34,7 +34,7 @@ class Lightse:
 
 
     def convertToHSV(self, R, G, B):
-        temp = colorsys.rgb_to_hsv(R, G, B)
+        temp = colorsys.rgb_to_hsv(R/255.0, G/255.0, B/255.0)
         h = temp[0]*65535
         s = temp[1]*255
         return h, s

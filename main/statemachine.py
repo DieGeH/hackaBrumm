@@ -11,8 +11,10 @@ class States(Enum):
     control = 1
     ambientLight = 2
     signalStandUp = 3
-    signalDrink = 4
-    terminated = 5
+    termSigStandUp = 4
+    signalDrink = 5
+    termSigDrink = 6
+    terminated = 7
 
 
 
@@ -28,7 +30,9 @@ class Statemachine:
             States.control:         self.onEnterControl,
             States.ambientLight:    self.onEnterAmbientLight,
             States.signalStandUp:   self.onEnterSignalStandUp,
+            States.termSigStandUp:  self.onEnterTermSigStandUp,
             States.signalDrink:     self.onEnterSignalDrink,
+            States.termSigDrink:    self.onEnterTermSigDrink,
             States.terminated:      self.onEnterTerminated
         }
 
@@ -37,7 +41,9 @@ class Statemachine:
             States.control:         self.onExitControl,
             States.ambientLight:    self.onExitAmbientLight,
             States.signalStandUp:   self.onExitSignalStandUp,
+            States.termSigStandUp:  self.onExitTermSigStandUp,
             States.signalDrink:     self.onExitSignalDrink,
+            States.termSigDrink:     self.onExitTermSigDrink,
             States.terminated:      self.onExitTerminated
         }
 
@@ -54,6 +60,12 @@ class Statemachine:
         #   *************************************************       signalStandUp
         elif self.current_state == States.signalStandUp:
             self.signalStandUp()
+        #   *************************************************
+        elif self.current_state == States.termSigStandUp:
+            self.termSigStandUp()
+        #   *************************************************
+        elif self.current_state == States.termSigDrink:
+            self.termSigDrink()
         #   *************************************************       signalDrink
         elif self.current_state == States.signalDrink:
             self.signalDrink()
@@ -78,12 +90,9 @@ class Statemachine:
         elif signal == 2:
             # self.current_state = States.signalDrink
             self.changeState(States.signalDrink)
-        elif signal < 0:
-            ambientValues = self.controller.calculateAmbientLight()
-            self.lightHandler.setStripOnAmbient(ambientValues)
-            self.changeState(States.ambientLight)
         else:
             self.changeState(States.ambientLight)
+
 
 
     def ambientLight(self):
@@ -95,12 +104,20 @@ class Statemachine:
 
     def signalStandUp(self):
         self.lightHandler.setStandUpLight()
-        self.changeState(States.control)
+        self.changeState(States.termSigStandUp)
         # lightHandler
+
+    def termSigStandUp(self):
+        if self.controller.terminateStandUp():
+            self.changeState(States.control)
+
+    def termSigDrink(self):
+        if self.controller.terminateStandUp():
+            self.changeState(States.control)
 
     def signalDrink(self):
         self.lightHandler.setDrinkingLight()
-        self.changeState(States.control)
+        self.changeState(States.termSigDrink)
 
 
     def terminated(self):
@@ -134,7 +151,7 @@ class Statemachine:
 
     def onExitInit(self):
         ambientValues = self.controller.calculateAmbientLight()
-        self.lightHandler.setStripOnAmbient(ambientValues)
+        self.lightHandler.setAmbientLight(ambientValues)
 
 
     def onEnterControl(self):
@@ -161,11 +178,29 @@ class Statemachine:
 
 
 
+    def onEnterTermSigStandUp(self):
+        self.controller.setThresholdStandUp(10)
+
+    def onExitTermSigStandUp(self):
+        ambientValues = controller.calculateAmbientLight()
+        self.lightHandler.resetStandUpLight(ambientValues)
+
+
+
     def onEnterSignalDrink(self):
         pass
 
     def onExitSignalDrink(self):
         pass
+
+
+    def onEnterTermSigDrink(self):
+        self.controller.setThresholdDrink(10)
+
+    def onExitTermSigDrink(self):
+        ambientValues = controller.calculateAmbientLight()
+        self.lightHandler.resetDrinkLight(ambientValues)
+
 
 
 
