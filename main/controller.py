@@ -16,17 +16,17 @@ class Controller:
         diffInSecsStandup = int((self.daytime - self.lastStandUp).total_seconds())
         # print(diffInSecs)
         diffInSecsDrink = int((self.daytime - self.lastDrink).total_seconds())
-        if diffInSecsStandup == 10:
+        if diffInSecsStandup == 60:
             self.lastStandUp = datetime.now()
             print("stand up")
             return 1
-        if diffInSecsStandup == 5:
+        if diffInSecsStandup == 15:
             return -1
-        if diffInSecsDrink == 15:
+        if diffInSecsDrink == 150:
             self.lastDrink = datetime.now()
             print("drink")
             return 2
-        if diffInSecsStandup == 5:
+        if diffInSecsDrink == 5:
             return -2
         return 0
 

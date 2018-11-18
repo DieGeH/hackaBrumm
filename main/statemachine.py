@@ -133,8 +133,8 @@ class Statemachine:
         pass
 
     def onExitInit(self):
-        pass
-
+        ambientValues = self.controller.calculateAmbientLight()
+        self.lightHandler.setStripOnAmbient(ambientValues)
 
 
     def onEnterControl(self):
