@@ -80,3 +80,4 @@ class Lightse:
 
     def getLightKeys(self):
         return self.Lights
+
